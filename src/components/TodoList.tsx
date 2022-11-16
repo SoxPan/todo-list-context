@@ -13,18 +13,16 @@ export const TodoList = () => {
 
     const handleCreate = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        const target = event.target as typeof event.target & {
-            name: { value: string };
-          };
-          const name = target.name.value;
-          updateTodoData([
+        const {target} = event as typeof event & {target: {name: { value: string };}}
+        const name = target.name.value;
+        updateTodoData([
             ...todoData,
             {
                 name: name,
                 completed: false
             }
-          ])
-          formRef?.current?.reset();
+        ])
+        formRef?.current?.reset();
     }
 
     return (
